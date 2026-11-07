@@ -49,6 +49,9 @@ final class TSSettingsBigCardCell: SPLarkSettingsCollectionViewCell {
         titleLabel.isHidden = true
         subtitleLabel.isHidden = true
 
+        // 自定义 cell 不会走基类的「刷底色」流程，这里补上（与其它卡片同一套：white 0.1）
+        setHighlighted(false, color: UIColor.white.withAlphaComponent(0.10))
+
         cardTitleLabel.text = NSLocalizedString("Font & Offset", comment: "TSSettingsBigCardCell")
         cardTitleLabel.font = .systemFont(ofSize: 13, weight: .semibold)
         cardTitleLabel.textColor = .white
@@ -177,6 +180,7 @@ final class TSSettingsBigCardCell: SPLarkSettingsCollectionViewCell {
         super.prepareForReuse()
         titleLabel.isHidden = true
         subtitleLabel.isHidden = true
+        setHighlighted(false, color: UIColor.white.withAlphaComponent(0.10))
         applyValues(animated: false)
     }
 
@@ -184,6 +188,7 @@ final class TSSettingsBigCardCell: SPLarkSettingsCollectionViewCell {
 
     func configure(with controller: TSSettingsController) {
         settingsController = controller
+        setHighlighted(false, color: UIColor.white.withAlphaComponent(0.10))
         applyValues(animated: false)
     }
 
@@ -215,16 +220,16 @@ final class TSSettingsBigCardCell: SPLarkSettingsCollectionViewCell {
     private func updateEnabledState() {
         let fontEnabled = fontSizeSwitch.isOn
         fontSizeSlider.isEnabled = fontEnabled
-        fontSizeSlider.alpha = fontEnabled ? 1.0 : 0.4
-        fontSizeValueLabel.alpha = fontEnabled ? 1.0 : 0.5
+        fontSizeSlider.alpha = fontEnabled ? 1.0 : 0.55
+        fontSizeValueLabel.alpha = fontEnabled ? 1.0 : 0.62
 
         let offsetEnabled = offsetSwitch.isOn
         offsetXSlider.isEnabled = offsetEnabled
         offsetYSlider.isEnabled = offsetEnabled
-        offsetXSlider.alpha = offsetEnabled ? 1.0 : 0.4
-        offsetYSlider.alpha = offsetEnabled ? 1.0 : 0.4
-        offsetXValueLabel.alpha = offsetEnabled ? 1.0 : 0.5
-        offsetYValueLabel.alpha = offsetEnabled ? 1.0 : 0.5
+        offsetXSlider.alpha = offsetEnabled ? 1.0 : 0.55
+        offsetYSlider.alpha = offsetEnabled ? 1.0 : 0.55
+        offsetXValueLabel.alpha = offsetEnabled ? 1.0 : 0.62
+        offsetYValueLabel.alpha = offsetEnabled ? 1.0 : 0.62
     }
 
     // MARK: - 动作
