@@ -1,0 +1,9 @@
+Package: ch.xxtou.hudapp.jb
+Name: TrollSpeed JB
+Version: 2.0-14
+Section: Tweaks
+Depends: firmware (>= 14.0)
+Architecture: iphoneos-arm
+Author: Ning&Lessica
+Maintainer: Ning&Lessica
+Description: Troll your speed, but jailbroken. 字体大小与偏移设置已整合进 App 内，系统设置入口已移除。
