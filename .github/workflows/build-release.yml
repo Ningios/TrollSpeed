@@ -52,12 +52,12 @@ jobs:
           echo "Available SDKs: $(find $THEOS/sdks -name "*.sdk" -maxdepth 1 -print)"
           echo "FINALPACKAGE=1" >> $GITHUB_ENV
           cd $GITHUB_WORKSPACE/TrollSpeed
-          echo "PKG_VERSION=$(./get-version.sh)" >> $GITHUB_ENV
+          echo "PKG_VERSION=$(sh ./get-version.sh)" >> $GITHUB_ENV
 
       - name: Build package
         run: |
           cd $GITHUB_WORKSPACE/TrollSpeed
-          ./gen-control.sh
+          sh ./gen-control.sh
           THEOS_PACKAGE_SCHEME=roothide FINALPACKAGE=1 gmake clean package
           THEOS_PACKAGE_SCHEME=rootless FINALPACKAGE=1 gmake clean package
 
