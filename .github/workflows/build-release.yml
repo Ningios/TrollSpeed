@@ -58,8 +58,8 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/TrollSpeed
           sh ./gen-control.sh
-          THEOS_PACKAGE_SCHEME=roothide FINALPACKAGE=1 gmake clean package
           THEOS_PACKAGE_SCHEME=rootless FINALPACKAGE=1 gmake clean package
+          THEOS_PACKAGE_SCHEME=roothide FINALPACKAGE=1 gmake clean package
 
       - name: Collect symbols
         run: |

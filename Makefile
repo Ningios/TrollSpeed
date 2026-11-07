@@ -18,7 +18,8 @@ TrollSpeed_FILES += $(wildcard sources/SPLarkController/*.swift)
 TrollSpeed_FILES += $(wildcard sources/SnapshotSafeView/*.swift)
 
 ifeq ($(THEOS_PACKAGE_SCHEME),roothide)
-TrollSpeed_FILES += libroot/dyn.c
+# 注意：新的 roothide/theos 已把 vendor/include/libroot.h 改成 #error 存根，
+# 要求统一走 roothide API（jbroot 由 <roothide.h> 提供），因此不再编译 libroot/dyn.c
 TrollSpeed_LIBRARIES += roothide
 endif
 
