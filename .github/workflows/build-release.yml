@@ -79,11 +79,3 @@ jobs:
           name: TrollSpeed_${{ env.PKG_VERSION }}_symbols
           path: |
             TrollSpeed/packages/TrollSpeed_${{ env.PKG_VERSION }}_symbols.zip
-
-      - name: Upload release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ env.PKG_VERSION }}
-          body_path: TrollSpeed/CHANGELOG.md
-          files: |
-            TrollSpeed/packages/ch.xxtou.hudapp.jb_*.deb
