@@ -11,7 +11,8 @@
     #import <UIKit/UIKit.h>
 
 #if !TARGET_OS_SIMULATOR && !defined(DISABLE_PATH_REDIRECTION)
-    #if __has_include(<roothide.h>)
+    #if THEOS_PACKAGE_SCHEME_ROOTHIDE
+        // roothide：官方 API（jbroot / rootfs，含 NSString / std::string 重载）
         #import <roothide.h>
         #ifndef JBROOT_PATH_CSTRING
             #define JBROOT_PATH_CSTRING(cPath) jbroot(cPath)
@@ -19,6 +20,10 @@
         #ifndef JBROOT_PATH_NSSTRING
             #define JBROOT_PATH_NSSTRING(nsPath) jbroot(nsPath)
         #endif
+    #elif __has_include(<rootless.h>)
+        // rootless（以及 rootful）：直接把 rootless.h 的 JBROOT_PATH_* / ROOT_PATH_* 拿来用，
+        // 注意不要再自己定义同名宏（roothide/stub.h 会把它们改成「不兼容」版本）
+        #import <rootless.h>
     #elif __has_include(<libroot.h>)
         #import <libroot.h>
     #endif
